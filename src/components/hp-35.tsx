@@ -39,6 +39,13 @@ export default function Component() {
   }
 
   const inputDigit = (digit: string) => {
+    if (digit === "π") {
+      setDisplay(Math.PI.toString().slice(0, 10))
+      setStack((prev) => ({ ...prev, x: Math.PI }))
+      setEntering(false)
+      setEexActive(false)
+      return
+    }
     if (eexActive) {
       // Entering exponent
       let newExp = Math.abs(eexExponent) * 10 + Number(digit)
