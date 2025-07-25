@@ -19,6 +19,7 @@ export default function Component() {
   const [eexMantissa, setEexMantissa] = useState(0)
   const [eexExponent, setEexExponent] = useState(0)
   const [eexSign, setEexSign] = useState(1)
+  const [arcActive, setArcActive] = useState(false)
 
   const updateDisplay = (value: number) => {
     if (value === 0) return "0"
@@ -116,15 +117,31 @@ export default function Component() {
         setStack((prev) => ({ ...prev, x: result }))
         break
       case "sin":
-        result = Math.sin(stack.x)
+        if (arcActive) {
+          result = Math.asin(stack.x)
+          console.log(result);
+          setArcActive(false)
+        } else {
+          result = Math.sin(stack.x)
+        }
         setStack((prev) => ({ ...prev, x: result }))
         break
       case "cos":
-        result = Math.cos(stack.x)
+        if (arcActive) {
+          result = Math.acos(stack.x)
+          setArcActive(false)
+        } else {
+          result = Math.cos(stack.x)
+        }
         setStack((prev) => ({ ...prev, x: result }))
         break
       case "tan":
-        result = Math.tan(stack.x)
+        if (arcActive) {
+          result = Math.atan(stack.x)
+          setArcActive(false)
+        } else {
+          result = Math.tan(stack.x)
+        }
         setStack((prev) => ({ ...prev, x: result }))
         break
       case "log":
@@ -161,6 +178,9 @@ export default function Component() {
         setStack((prev) => ({ ...prev, x: prev.y, y: prev.x }))
         result = stack.y
         break
+      case "arc":
+        setArcActive(true)
+        return
     }
 
     setDisplay(updateDisplay(result))
@@ -204,7 +224,7 @@ export default function Component() {
           <Button onMouseDown={clear} className="bg-gradient-to-b from-blue-500 to-blue-600 hover:from-blue-400 hover:to-blue-500 text-white text-xs font-bold h-10 rounded border border-blue-400 active:scale-95 transition-transform">CLR</Button>
 
           <Button onMouseDown={() => operation("√x")} className="bg-gradient-to-b from-gray-800 to-gray-900 hover:from-gray-700 hover:to-gray-800 text-white text-xs font-bold h-10 rounded border border-gray-600 active:scale-95 transition-transform">√x</Button>
-          <Button className="bg-gradient-to-b from-gray-800 to-gray-900 hover:from-gray-700 hover:to-gray-800 text-white text-xs font-bold h-10 rounded border border-gray-600 active:scale-95 transition-transform">arc</Button>
+          <Button onMouseDown={() => operation("arc")} className="bg-gradient-to-b from-gray-800 to-gray-900 hover:from-gray-700 hover:to-gray-800 text-white text-xs font-bold h-10 rounded border border-gray-600 active:scale-95 transition-transform">arc</Button>
           <Button onMouseDown={() => operation("sin")} className="bg-gradient-to-b from-gray-800 to-gray-900 hover:from-gray-700 hover:to-gray-800 text-white text-xs font-bold h-10 rounded border border-gray-600 active:scale-95 transition-transform">sin</Button>
           <Button onMouseDown={() => operation("cos")} className="bg-gradient-to-b from-gray-800 to-gray-900 hover:from-gray-700 hover:to-gray-800 text-white text-xs font-bold h-10 rounded border border-gray-600 active:scale-95 transition-transform">cos</Button>
           <Button onMouseDown={() => operation("tan")} className="bg-gradient-to-b from-gray-800 to-gray-900 hover:from-gray-700 hover:to-gray-800 text-white text-xs font-bold h-10 rounded border border-gray-600 active:scale-95 transition-transform">tan</Button>
