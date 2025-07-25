@@ -162,63 +162,58 @@ export default function Component() {
           </div>
         </div>
 
-        {/* Button Grid */}
-        <div className="grid grid-cols-5 gap-2">
-          {/* Row 1 - Scientific Functions */}
+        {/* Top 4 rows: 5-column grid for functions */}
+        <div className="grid grid-cols-5 gap-2 mb-4">
           <Button onClick={() => operation("x^y")} className="bg-gradient-to-b from-gray-800 to-gray-900 hover:from-gray-700 hover:to-gray-800 text-white text-xs font-bold h-10 rounded border border-gray-600 active:scale-95 transition-transform">x<sup>y</sup></Button>
           <Button onClick={() => operation("log")} className="bg-gradient-to-b from-gray-800 to-gray-900 hover:from-gray-700 hover:to-gray-800 text-white text-xs font-bold h-10 rounded border border-gray-600 active:scale-95 transition-transform">log</Button>
           <Button onClick={() => operation("ln")} className="bg-gradient-to-b from-gray-800 to-gray-900 hover:from-gray-700 hover:to-gray-800 text-white text-xs font-bold h-10 rounded border border-gray-600 active:scale-95 transition-transform">ln</Button>
           <Button onClick={() => operation("e^x")} className="bg-gradient-to-b from-gray-800 to-gray-900 hover:from-gray-700 hover:to-gray-800 text-white text-xs font-bold h-10 rounded border border-gray-600 active:scale-95 transition-transform">e<sup>x</sup></Button>
           <Button onClick={clear} className="bg-gradient-to-b from-blue-500 to-blue-600 hover:from-blue-400 hover:to-blue-500 text-white text-xs font-bold h-10 rounded border border-blue-400 active:scale-95 transition-transform">CLR</Button>
 
-          {/* Row 2 */}
           <Button onClick={() => operation("√x")} className="bg-gradient-to-b from-gray-800 to-gray-900 hover:from-gray-700 hover:to-gray-800 text-white text-xs font-bold h-10 rounded border border-gray-600 active:scale-95 transition-transform">√x</Button>
           <Button className="bg-gradient-to-b from-gray-800 to-gray-900 hover:from-gray-700 hover:to-gray-800 text-white text-xs font-bold h-10 rounded border border-gray-600 active:scale-95 transition-transform">arc</Button>
           <Button onClick={() => operation("sin")} className="bg-gradient-to-b from-gray-800 to-gray-900 hover:from-gray-700 hover:to-gray-800 text-white text-xs font-bold h-10 rounded border border-gray-600 active:scale-95 transition-transform">sin</Button>
           <Button onClick={() => operation("cos")} className="bg-gradient-to-b from-gray-800 to-gray-900 hover:from-gray-700 hover:to-gray-800 text-white text-xs font-bold h-10 rounded border border-gray-600 active:scale-95 transition-transform">cos</Button>
           <Button onClick={() => operation("tan")} className="bg-gradient-to-b from-gray-800 to-gray-900 hover:from-gray-700 hover:to-gray-800 text-white text-xs font-bold h-10 rounded border border-gray-600 active:scale-95 transition-transform">tan</Button>
 
-          {/* Row 3 */}
           <Button onClick={() => operation("1/x")} className="bg-gradient-to-b from-gray-800 to-gray-900 hover:from-gray-700 hover:to-gray-800 text-white text-xs font-bold h-10 rounded border border-gray-600 active:scale-95 transition-transform">1/x</Button>
           <Button onClick={() => operation("x↔y")} className="bg-gradient-to-b from-gray-800 to-gray-900 hover:from-gray-700 hover:to-gray-800 text-white text-xs font-bold h-10 rounded border border-gray-600 active:scale-95 transition-transform">x↔y</Button>
           <Button className="bg-gradient-to-b from-gray-800 to-gray-900 hover:from-gray-700 hover:to-gray-800 text-white text-xs font-bold h-10 rounded border border-gray-600 active:scale-95 transition-transform">R↓</Button>
           <Button onClick={store} className="bg-gradient-to-b from-gray-800 to-gray-900 hover:from-gray-700 hover:to-gray-800 text-white text-xs font-bold h-10 rounded border border-gray-600 active:scale-95 transition-transform">STO</Button>
           <Button onClick={recall} className="bg-gradient-to-b from-gray-800 to-gray-900 hover:from-gray-700 hover:to-gray-800 text-white text-xs font-bold h-10 rounded border border-gray-600 active:scale-95 transition-transform">RCL</Button>
 
-          {/* Row 4 */}
+          {/* Row 4: ENTER spans columns 1-2, then CHS, EEX, CLx */}
           <Button onClick={enter} className="col-span-2 bg-gradient-to-b from-blue-500 to-blue-600 hover:from-blue-400 hover:to-blue-500 text-white text-sm font-bold h-10 rounded border border-blue-400 active:scale-95 transition-transform">ENTER↑</Button>
           <Button onClick={() => operation("CHS")} className="bg-gradient-to-b from-blue-500 to-blue-600 hover:from-blue-400 hover:to-blue-500 text-white text-xs font-bold h-10 rounded border border-blue-400 active:scale-95 transition-transform">CHS</Button>
           <Button className="bg-gradient-to-b from-blue-500 to-blue-600 hover:from-blue-400 hover:to-blue-500 text-white text-xs font-bold h-10 rounded border border-blue-400 active:scale-95 transition-transform">EEX</Button>
           <Button className="bg-gradient-to-b from-blue-500 to-blue-600 hover:from-blue-400 hover:to-blue-500 text-white text-xs font-bold h-10 rounded border border-blue-400 active:scale-95 transition-transform">CLx</Button>
-          <div></div>
+        </div>
 
-          {/* Row 5 */}
-          <Button onClick={() => operation("-")} className="bg-gradient-to-b from-blue-500 to-blue-600 hover:from-blue-400 hover:to-blue-500 text-white text-lg font-bold h-10 rounded border border-blue-400 active:scale-95 transition-transform">-</Button>
-          <Button onClick={() => inputDigit("7")} className="bg-gradient-to-b from-gray-100 to-gray-200 hover:from-white hover:to-gray-100 text-black text-lg font-bold h-10 rounded border border-gray-300 active:scale-95 transition-transform">7</Button>
-          <Button onClick={() => inputDigit("8")} className="bg-gradient-to-b from-gray-100 to-gray-200 hover:from-white hover:to-gray-100 text-black text-lg font-bold h-10 rounded border border-gray-300 active:scale-95 transition-transform">8</Button>
-          <Button onClick={() => inputDigit("9")} className="bg-gradient-to-b from-gray-100 to-gray-200 hover:from-white hover:to-gray-100 text-black text-lg font-bold h-10 rounded border border-gray-300 active:scale-95 transition-transform">9</Button>
-          <div></div>
+        {/* Bottom section: 4x4 grid for operators and number pad */}
+        <div className="grid grid-cols-4 gap-2">
+          {/* Row 1: - operator, 7, 8, 9 */}
+          <Button onClick={() => operation("-")} className="bg-gradient-to-b from-blue-500 to-blue-600 hover:from-blue-400 hover:to-blue-500 text-white text-lg font-bold h-12 rounded border border-blue-400 active:scale-95 transition-transform">-</Button>
+          <Button onClick={() => inputDigit("7")} className="bg-gradient-to-b from-gray-100 to-gray-200 hover:from-white hover:to-gray-100 text-black text-lg font-bold h-12 rounded border border-gray-300 active:scale-95 transition-transform">7</Button>
+          <Button onClick={() => inputDigit("8")} className="bg-gradient-to-b from-gray-100 to-gray-200 hover:from-white hover:to-gray-100 text-black text-lg font-bold h-12 rounded border border-gray-300 active:scale-95 transition-transform">8</Button>
+          <Button onClick={() => inputDigit("9")} className="bg-gradient-to-b from-gray-100 to-gray-200 hover:from-white hover:to-gray-100 text-black text-lg font-bold h-12 rounded border border-gray-300 active:scale-95 transition-transform">9</Button>
 
-          {/* Row 6 */}
-          <Button onClick={() => operation("+")} className="bg-gradient-to-b from-blue-500 to-blue-600 hover:from-blue-400 hover:to-blue-500 text-white text-lg font-bold h-10 rounded border border-blue-400 active:scale-95 transition-transform">+</Button>
-          <Button onClick={() => inputDigit("4")} className="bg-gradient-to-b from-gray-100 to-gray-200 hover:from-white hover:to-gray-100 text-black text-lg font-bold h-10 rounded border border-gray-300 active:scale-95 transition-transform">4</Button>
-          <Button onClick={() => inputDigit("5")} className="bg-gradient-to-b from-gray-100 to-gray-200 hover:from-white hover:to-gray-100 text-black text-lg font-bold h-10 rounded border border-gray-300 active:scale-95 transition-transform">5</Button>
-          <Button onClick={() => inputDigit("6")} className="bg-gradient-to-b from-gray-100 to-gray-200 hover:from-white hover:to-gray-100 text-black text-lg font-bold h-10 rounded border border-gray-300 active:scale-95 transition-transform">6</Button>
-          <div></div>
+          {/* Row 2: + operator, 4, 5, 6 */}
+          <Button onClick={() => operation("+")} className="bg-gradient-to-b from-blue-500 to-blue-600 hover:from-blue-400 hover:to-blue-500 text-white text-lg font-bold h-12 rounded border border-blue-400 active:scale-95 transition-transform">+</Button>
+          <Button onClick={() => inputDigit("4")} className="bg-gradient-to-b from-gray-100 to-gray-200 hover:from-white hover:to-gray-100 text-black text-lg font-bold h-12 rounded border border-gray-300 active:scale-95 transition-transform">4</Button>
+          <Button onClick={() => inputDigit("5")} className="bg-gradient-to-b from-gray-100 to-gray-200 hover:from-white hover:to-gray-100 text-black text-lg font-bold h-12 rounded border border-gray-300 active:scale-95 transition-transform">5</Button>
+          <Button onClick={() => inputDigit("6")} className="bg-gradient-to-b from-gray-100 to-gray-200 hover:from-white hover:to-gray-100 text-black text-lg font-bold h-12 rounded border border-gray-300 active:scale-95 transition-transform">6</Button>
 
-          {/* Row 7 */}
-          <Button onClick={() => operation("×")} className="bg-gradient-to-b from-blue-500 to-blue-600 hover:from-blue-400 hover:to-blue-500 text-white text-lg font-bold h-10 rounded border border-blue-400 active:scale-95 transition-transform">×</Button>
-          <Button onClick={() => inputDigit("1")} className="bg-gradient-to-b from-gray-100 to-gray-200 hover:from-white hover:to-gray-100 text-black text-lg font-bold h-10 rounded border border-gray-300 active:scale-95 transition-transform">1</Button>
-          <Button onClick={() => inputDigit("2")} className="bg-gradient-to-b from-gray-100 to-gray-200 hover:from-white hover:to-gray-100 text-black text-lg font-bold h-10 rounded border border-gray-300 active:scale-95 transition-transform">2</Button>
-          <Button onClick={() => inputDigit("3")} className="bg-gradient-to-b from-gray-100 to-gray-200 hover:from-white hover:to-gray-100 text-black text-lg font-bold h-10 rounded border border-gray-300 active:scale-95 transition-transform">3</Button>
-          <div></div>
+          {/* Row 3: × operator, 1, 2, 3 */}
+          <Button onClick={() => operation("×")} className="bg-gradient-to-b from-blue-500 to-blue-600 hover:from-blue-400 hover:to-blue-500 text-white text-lg font-bold h-12 rounded border border-blue-400 active:scale-95 transition-transform">×</Button>
+          <Button onClick={() => inputDigit("1")} className="bg-gradient-to-b from-gray-100 to-gray-200 hover:from-white hover:to-gray-100 text-black text-lg font-bold h-12 rounded border border-gray-300 active:scale-95 transition-transform">1</Button>
+          <Button onClick={() => inputDigit("2")} className="bg-gradient-to-b from-gray-100 to-gray-200 hover:from-white hover:to-gray-100 text-black text-lg font-bold h-12 rounded border border-gray-300 active:scale-95 transition-transform">2</Button>
+          <Button onClick={() => inputDigit("3")} className="bg-gradient-to-b from-gray-100 to-gray-200 hover:from-white hover:to-gray-100 text-black text-lg font-bold h-12 rounded border border-gray-300 active:scale-95 transition-transform">3</Button>
 
-          {/* Row 8 */}
-          <Button onClick={() => operation("÷")} className="bg-gradient-to-b from-blue-500 to-blue-600 hover:from-blue-400 hover:to-blue-500 text-white text-lg font-bold h-10 rounded border border-blue-400 active:scale-95 transition-transform">÷</Button>
-          <Button onClick={() => inputDigit("0")} className="bg-gradient-to-b from-gray-100 to-gray-200 hover:from-white hover:to-gray-100 text-black text-lg font-bold h-10 rounded border border-gray-300 active:scale-95 transition-transform">0</Button>
-          <Button onClick={inputDecimal} className="bg-gradient-to-b from-gray-100 to-gray-200 hover:from-white hover:to-gray-100 text-black text-lg font-bold h-10 rounded border border-gray-300 active:scale-95 transition-transform">.</Button>
-          <Button onClick={() => inputDigit("π")} className="bg-gradient-to-b from-gray-100 to-gray-200 hover:from-white hover:to-gray-100 text-black text-lg font-bold h-10 rounded border border-gray-300 active:scale-95 transition-transform">π</Button>
-          <div></div>
+          {/* Row 4: ÷ operator, 0, ., π */}
+          <Button onClick={() => operation("÷")} className="bg-gradient-to-b from-blue-500 to-blue-600 hover:from-blue-400 hover:to-blue-500 text-white text-lg font-bold h-12 rounded border border-blue-400 active:scale-95 transition-transform">÷</Button>
+          <Button onClick={() => inputDigit("0")} className="bg-gradient-to-b from-gray-100 to-gray-200 hover:from-white hover:to-gray-100 text-black text-lg font-bold h-12 rounded border border-gray-300 active:scale-95 transition-transform">0</Button>
+          <Button onClick={inputDecimal} className="bg-gradient-to-b from-gray-100 to-gray-200 hover:from-white hover:to-gray-100 text-black text-lg font-bold h-12 rounded border border-gray-300 active:scale-95 transition-transform">.</Button>
+          <Button onClick={() => inputDigit("π")} className="bg-gradient-to-b from-gray-100 to-gray-200 hover:from-white hover:to-gray-100 text-black text-lg font-bold h-12 rounded border border-gray-300 active:scale-95 transition-transform">π</Button>
         </div>
 
         {/* HP Branding */}
