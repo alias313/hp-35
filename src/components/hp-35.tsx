@@ -254,6 +254,12 @@ export default function Component() {
           <div className="text-gray-300 text-xs font-bold tracking-wider">HEWLETT-PACKARD</div>
         </div>
       </div>
+      {/* RPN Example in background */}
+      <div className="absolute bottom-8 left-0 w-full flex justify-center pointer-events-none">
+        <div className="bg-transparent text-gray-700 text-xs text-center pointer-events-auto">
+          Example: To calculate <span className="font-mono">3 + 4</span>: <span className="font-mono">3 ENTER 4 +</span>
+        </div>
+      </div>
     </div>
   )
 }
