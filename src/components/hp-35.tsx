@@ -15,6 +15,10 @@ export default function Component() {
   const [display, setDisplay] = useState("0")
   const [entering, setEntering] = useState(false)
   const [memory, setMemory] = useState(0)
+  const [eexActive, setEexActive] = useState(false)
+  const [eexMantissa, setEexMantissa] = useState(0)
+  const [eexExponent, setEexExponent] = useState(0)
+  const [eexSign, setEexSign] = useState(1)
 
   const updateDisplay = (value: number) => {
     if (value === 0) return "0"
@@ -35,7 +39,14 @@ export default function Component() {
   }
 
   const inputDigit = (digit: string) => {
-    if (entering) {
+    if (eexActive) {
+      // Entering exponent
+      let newExp = Math.abs(eexExponent) * 10 + Number(digit)
+      newExp = eexSign < 0 ? -newExp : newExp
+      setEexExponent(newExp)
+      setDisplay(`${eexMantissa}e${newExp}`)
+      setStack((prev) => ({ ...prev, x: eexMantissa * Math.pow(10, newExp) }))
+    } else if (entering) {
       const newDisplay = display === "0" ? digit : display + digit
       if (newDisplay.length <= 10) {
         setDisplay(newDisplay)
@@ -121,7 +132,21 @@ export default function Component() {
         result = Math.exp(stack.x)
         setStack((prev) => ({ ...prev, x: result }))
         break
+      case "EEX":
+        setEexActive(true)
+        setEexMantissa(stack.x)
+        setEexExponent(0)
+        setEexSign(1)
+        setDisplay(`${stack.x}e`)
+        setEntering(false)
+        return
       case "CHS":
+        if (eexActive) {
+          setEexSign((prev) => -prev)
+          setEexExponent((prev) => -prev)
+          setDisplay(`${eexMantissa}e${-eexExponent}`)
+          return
+        }
         result = -stack.x
         setStack((prev) => ({ ...prev, x: result }))
         break
@@ -133,6 +158,7 @@ export default function Component() {
 
     setDisplay(updateDisplay(result))
     setEntering(false)
+    setEexActive(false)
   }
 
   const clear = () => {
@@ -185,7 +211,7 @@ export default function Component() {
           {/* Row 4: ENTER spans columns 1-2, then CHS, EEX, CLx */}
           <Button onMouseDown={enter} className="col-span-2 bg-gradient-to-b from-blue-500 to-blue-600 hover:from-blue-400 hover:to-blue-500 text-white text-sm font-bold h-10 rounded border border-blue-400 active:scale-95 transition-transform">ENTER↑</Button>
           <Button onMouseDown={() => operation("CHS")} className="bg-gradient-to-b from-blue-500 to-blue-600 hover:from-blue-400 hover:to-blue-500 text-white text-xs font-bold h-10 rounded border border-blue-400 active:scale-95 transition-transform">CHS</Button>
-          <Button className="bg-gradient-to-b from-blue-500 to-blue-600 hover:from-blue-400 hover:to-blue-500 text-white text-xs font-bold h-10 rounded border border-blue-400 active:scale-95 transition-transform">EEX</Button>
+          <Button onMouseDown={() => operation("EEX")} className="bg-gradient-to-b from-blue-500 to-blue-600 hover:from-blue-400 hover:to-blue-500 text-white text-xs font-bold h-10 rounded border border-blue-400 active:scale-95 transition-transform">EEX</Button>
           <Button className="bg-gradient-to-b from-blue-500 to-blue-600 hover:from-blue-400 hover:to-blue-500 text-white text-xs font-bold h-10 rounded border border-blue-400 active:scale-95 transition-transform">CLx</Button>
         </div>
 
